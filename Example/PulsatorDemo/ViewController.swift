@@ -105,5 +105,33 @@ class ViewController: UIViewController {
             pulsator.stop()
         }
     }
+    
+    @IBAction func presentVC(sender: UIButton) {
+        print("selected")
+        self.present(test(), animated: true, completion: nil)
+    }
+}
+
+class test: UIViewController {
+    var text = UILabel(frame: CGRect(x: UIScreen.main.bounds.size.width/2, y:UIScreen.main.bounds.size.height/2, width:200, height:200))
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+
+        text.text = "test"
+        text.textColor = UIColor.white
+        
+        let backTap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        text.isUserInteractionEnabled = true
+        text.addGestureRecognizer(backTap)
+        
+        self.view.addSubview(text)
+
+    }
+    
+    func tapFunction() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
